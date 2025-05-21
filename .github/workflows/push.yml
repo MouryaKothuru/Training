@@ -1,0 +1,27 @@
+name: Push workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v2
+
+    - name: Make changes
+      run: |
+       git config --global user.email "mouryakothuru547@gmail.com"
+       git config --global user.name "Mourya Kothuru"
+
+       echo "New Changes" >> changes.txt
+       git add changes.txt
+       git commit -m "Add changes"
+
+    - name: Push changes
+      env:
+       GITHUB_TOKEN: ${{  secrets.GH_PAT  }}
+      run: |
+        git push origin feture
