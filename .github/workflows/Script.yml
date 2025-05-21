@@ -5,18 +5,13 @@ on:
 
 jobs:
   run-script:
+    environment: Test22
     runs-on: ubuntu-latest
 
     steps:
     - name: checkout this repository
       uses: actions/checkout@v2
 
-    - name: checkout another repository
-      uses: actions/checkout@v2
-      with:
-        repository: MouryaKothuru/Test
-        token: ${{  secrets.GH_PAT  }}
-        path: other-repo
         
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -25,5 +20,4 @@ jobs:
 
     - name: Run Python script
       run: |
-        cd other-repo
         python script.py
